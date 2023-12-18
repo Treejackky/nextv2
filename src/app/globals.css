@@ -24,10 +24,11 @@ header{
     position: sticky;
     top: 0;
     flex: 0 0 auto;
-    height: 10vh;
+    height: 5vh;
     width: 100%;
-    background-color: antiquewhite;
-}
+    background-color: white;
+    border-bottom: 1px solid #e5e5e5;
+ }
 
 header nav{
     display: flex;
@@ -52,6 +53,7 @@ header nav{
     width: 100%;
     height: 10%;
     border-bottom: 1px solid #e5e5e5;
+
 }
 
 .main-content .item .item-left {
@@ -79,6 +81,16 @@ header nav{
     object-fit: cover;
 }
 
+ 
+.main-content .item .item-right {
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    width: 10%;
+    height: 20%;
+    background-color: #FFCC2E;
+ }
+ 
 
 footer {
     flex: 0 0 auto;
@@ -120,4 +132,10 @@ footer .footer2 {
 ::-webkit-scrollbar {
     display: none;
 }
+
+.active {
+     color: #FFCC2E;
+ 
+}
+
  

@@ -219,7 +219,6 @@
     padding: 0.5rem;
     border-radius: 8px;
     text-align: left;
-  
   }
   
   .itemv2 .but-tonv2 {
@@ -236,6 +235,8 @@
     font-size: 0.8rem;
     text-align: right;
     max-width:min-content;
+    white-space: nowrap;  
+    overflow: hidden; 
   }
 
   .dialog-overlay {
@@ -307,4 +308,64 @@
     color: white;
   }
   
+  /*  */
+
+  .dialogv2 {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 400px;
+  }
    
+  .dialogv2 .rowd {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    margin-top: 20px;
+  }
+  
+  .dialogv2 .rowd img{
+    width: 45%;
+    height: 45%;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+  
+  .dialog-overlay .dialogv2 p {
+    font-size: 1rem;
+    /* ไม่ขึ้นบรรทัดใหม่ */
+    white-space: nowrap;
+    overflow: hidden;
+    font-weight: bold;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .dialogv2 .rowd p {
+    font-size: 1rem;
+    /* ไม่ขึ้นบรรทัดใหม่ */
+    white-space: nowrap;
+    overflow: hidden;
+    font-weight: bold;
+    justify-content: center;
+    align-items: center;
+    text-align: left;
+  }
+  
+  .dialogv2-actions{
+    display: flex;
+    justify-content: space-between;
+  }
+  /*   */
+  .dialog-actionsv2 button {
+    width: 100%;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #FFCC2E;
+    color: white;
+  }
