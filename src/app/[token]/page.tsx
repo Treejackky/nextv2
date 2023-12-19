@@ -22,6 +22,7 @@ export default function Index({ params }: Props) {
   const [itemToRemove, setItemToRemove] = useState<any>(null);
   const [overlay4, setOverlay4] = useState(false);
   const [overlay5, setOverlay5] = useState(false);
+  const [overlay6, setOverlay6] = useState(false);
   const [order, setOrder] = useState<any>([]);
   const [ftime, setFTime] = useState<any>(0);
   const [activeSection, setActiveSection] = useState(null);
@@ -40,7 +41,7 @@ export default function Index({ params }: Props) {
   useEffect(() => {
     if (filter) {
       const filterData = data.filter((item: any) => item.GrpSub === filter);
-      console.log(filterData);
+      // console.log(filterData);
     } else {
       setFilteredData(data);
     }
@@ -76,7 +77,7 @@ export default function Index({ params }: Props) {
       localStorage.setItem("ftime", new Date().toLocaleTimeString());
       let storedTime = localStorage.getItem("ftime");
       setFTime(storedTime);
-      console.log(storedTime);
+      // console.log(storedTime);
     }
     if (!cart.length) {
       localStorage.removeItem("cart");
@@ -183,7 +184,7 @@ export default function Index({ params }: Props) {
   const handleItemClick = (item: any) => {
     setSelectedItem(item);
     setOverlay(true);
-    console.log(item);
+    // console.log(item);
   };
 
   const addToCart = (item: any, countItem: any) => {
@@ -222,7 +223,7 @@ export default function Index({ params }: Props) {
   };
 
   const isChanged = (e: any) => {
-    console.log(e.target.id);
+    // console.log(e.target.id);
     if (e.target.id == "menu") {
       return [setPage(1)];
     } else if (e.target.id == "cart") {
@@ -231,10 +232,10 @@ export default function Index({ params }: Props) {
       getOrder(TableID, OutleID)
         .then((orderData) => {
           setOrder(orderData.orders);
-          console.log(order);
+          // console.log(order);
         })
         .catch((error) => {
-          console.error("Error fetching order data:", error);
+          // console.error("Error fetching order data:", error);
         });
 
       return setPage(3);
@@ -252,6 +253,8 @@ export default function Index({ params }: Props) {
       }
     }
   };
+
+ 
 
   const Menu = () => {
     return (
@@ -403,7 +406,18 @@ export default function Index({ params }: Props) {
             </div>
           </div>
         )}
-       
+        {overlay6  && (
+          <div className="dialog-overlay">
+            <div className="dialogv2">
+              <p>
+                คุณได้สั่งอาหารเข้าครัวเรียบร้อย <br /> สามารถสั่งอาหารต่อได้นะค่ะ :{")"}
+              </p>
+              <div className="dialog-actionsv2">
+                <button onClick={() => [setOverlay6(false)]}>ตกลง</button>
+              </div>
+            </div>
+          </div>
+        )}
       </>
     );
   };
@@ -542,8 +556,9 @@ export default function Index({ params }: Props) {
             <div className="dialog-overlay">
               <div className="dialog">
                 <p>คุณต้องการสั่งอาหารทั้งหมดนี้ใช่หรือไม่?</p>
-                <div className="rowd"></div>
-                <div className="dialog-actions">
+                <p className="text-red-500">***อาหารที่คุณสั่งจะไม่สามารถคืนได้***</p>
+                <br />
+                 <div className="dialog-actions">
                   <button onClick={() => setOverlay4(false)}>ยกเลิก</button>
                   <button
                     onClick={() => [
@@ -551,7 +566,8 @@ export default function Index({ params }: Props) {
                       setCart([]),
                       setOverlay4(false),
                       setPage(1),
-                    ]}>
+                      setOverlay6(true),
+                     ]}>
                     ตกลง
                   </button>
                 </div>
@@ -559,7 +575,6 @@ export default function Index({ params }: Props) {
             </div>
           )}
         </div>
-
         </div>
  
         {/* {isBar()} */}
@@ -601,7 +616,7 @@ export default function Index({ params }: Props) {
                 )}
                 <div className="title">
                   <p>{item.ItemSupp}</p>
-                  <p>0.00฿</p>
+                  {/* <p>{item.UnitPrice}</p> */}
                 </div>
               </div>
               <button className="but-tonv2">
@@ -619,7 +634,6 @@ export default function Index({ params }: Props) {
   const isFooter = () => {
     return (
       <>
-   
         <div className="sticky">
         {isBar()}
         <footer>
@@ -752,7 +766,7 @@ export async function getItem(params: any, OutleID: any, TableID: any) {
     zlib.unzipSync(Buffer.from([120, 156, ...new Uint8Array(resBuffer)]))
   );
 
-  console.log(data);
+  // console.log(data);
 
   return data;
 }
