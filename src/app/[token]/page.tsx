@@ -550,8 +550,8 @@ export default function Index({ params }: Props) {
                       postItem(cart),
                       setCart([]),
                       setOverlay4(false),
-                    ]}
-                  >
+                      setPage(1),
+                    ]}>
                     ตกลง
                   </button>
                 </div>
@@ -670,7 +670,7 @@ export default function Index({ params }: Props) {
         <br/><br/><br/>
         <div className="cart-orderv2">
             <button>
-              ราคาทั้งหมด 0.00 ฿
+              ราคาทั้งหมด 0.00 ฿ ไม่รวม Vat
             </button>
           </div>
         </>

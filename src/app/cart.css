@@ -23,7 +23,6 @@
 
 .header2 .header-page2 {
   padding-top: 1rem;
-
   display: flex;
   flex: 0 0 auto;
   justify-content: center;
@@ -33,6 +32,8 @@
   padding: 0.5rem;
   font-size: 2rem;
   position:static;
+  padding-top: 1rem;
+
   top:0;
   padding-bottom: 20px;
   font-weight: bold;

@@ -278,6 +278,7 @@ footer {
     justify-content: center;
     text-align: center;
     background-color: #2e9dff;
+    width: 100%;
   }
   .modal-img img {
     width: 100%;
