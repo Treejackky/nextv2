@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "next dev -p 8770",
+    "build": "next build -p 8770",
     "start": "next start",
     "lint": "next lint"
   },

@@ -277,7 +277,6 @@ export default function Index({ params }: Props) {
             </nav>
           </header>
         <div className="main-content">
-       
           {filteredData.map((item, idx) => (
             <button
               onClick={() => handleItemClick(item)}
@@ -300,7 +299,7 @@ export default function Index({ params }: Props) {
                 )}
                 <div>
                   <p>{item.Name}</p>
-                  <p>0.00฿</p>
+                  {/* <p>0.00฿</p> */}
                 </div>
               </div>
               <div
@@ -452,6 +451,7 @@ export default function Index({ params }: Props) {
 
     return (
       <>
+         <div className="header2">
          <div className="header-page2">
           <button onClick={() => [setPage(1), setOverlay5(true)]}>x</button>
           <div>
@@ -459,7 +459,8 @@ export default function Index({ params }: Props) {
             <h1>ตะกร้า</h1> <p>ข้อมูล ณ เวลา {ftime}</p>
           </div>
         </div>
-         <div className="main-content">
+         </div>
+         <div className="main-content2">
         <div className="cart-container">
           {cart.map((item: any, index: any) => (
             <div className="itemv2" key={index}>
@@ -478,7 +479,7 @@ export default function Index({ params }: Props) {
                 )}
                 <div className="title">
                   <p>{item.ItemSupp}</p>
-                  <p>0.00฿</p>
+                  {/* <p>0.00฿</p> */}
                 </div>
               </div>
               <div className="cart-body">
@@ -570,15 +571,19 @@ export default function Index({ params }: Props) {
   const Order = () => {
     return (
       <>
-        <nav className="header-page2">
+       <div className="header3">
+       <div className="header-page3">
           <button onClick={() => setPage(1)}>x</button>
           <div>
             {" "}
             <h1>รายการที่สั่ง</h1>{" "}
             <p>ข้อมูล ณ เวลา {new Date().toLocaleTimeString()}</p>
           </div>
-        </nav>
-        <div className="main-content">
+          <button><img  id="cart" onClick={isChanged} src="cart.svg" /></button>
+          
+        </div>
+       </div>
+        <div className="main-content2">
           {order.map((item: any, index: any) => (
             <div className="itemv2" key={index}>
               <div className="v2">
