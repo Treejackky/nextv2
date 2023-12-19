@@ -1,371 +1,209 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+.header-page2 {
+  display: flex;
+  flex: 0 0 auto;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 2rem;
+  height: 10vh;
+  position: sticky;
+  top:0;
+   padding-bottom: 20px;
+  font-weight: bold;
+  background-color: #FFCC2E; 
+}
+.header-page2 div p {
+  color: black;
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+.header-page2 button {
+  color: black;
+  padding: 0.5rem;
+  font-size: 2rem;
+  position: absolute;
+  left: 0.5rem;
+}
+
+.header-page2 h1 {
+  flex-grow: 1;
+  text-align: center;
+}
+
+.cart-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%; 
+  padding: 0.5rem;
+}
 
 
-.overlay{
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1000;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(0,0,0,0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.cart-body {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 
-  }
-  
-  .modal {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1001; 
-    width: 80%; 
-    max-width: 500px; 
-    background: white;
-    padding: 20px;
-    box-sizing:  border-box;
-    border-radius: 8px;
-    box-shadow: 0 0 2px gray;
-  }
-  
-  .modal-header{
-    padding: 10px 0;
-    border-bottom: 1px solid #e5e5e5;
-  }
-  
-  .modal-footer {
-   
-    text-align: right;
-    display: flex;
-    justify-content: space-around;
-  }
-  
-  .modal-body {
-    padding: 20px 0;
-    display: flex;
-  }
-  
-  .modal-img img {
-    width: 60%;
-    height: auto;  
-    object-fit: cover;
-  }
-  
-  .item-count {
-   
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .item-count span {
-    font-size: 1.2rem;
-    font-weight: bold;
-    margin: 0.3rem;
-    display: inline-block;
-    width: 2rem;  
-    text-align: center;  
-  }
-  
-  .count-btn, .modal-action {
-    background-color: #FFCC2E;
-    border: none;
-    color: white;
-    padding: 0.5rem 1rem;
-    text-align: center;
-    font-size: 1rem;
-    margin: 0.5rem;
-    cursor: pointer;
-    border-radius: 8px;
-  }
-  
-/* cart */
 
-  .header-page2 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    padding: 0.5rem;
-    font-size: 2rem;
-    height: 10vh;
-    font-weight: bold;
-    /* Removed the background-color comment to apply the color */
-    background-color: #FFCC2E; 
-  }
-  
-  .header-page2 div p {
-    color: black;
-    font-size: 0.8rem;
-    text-align: center;
-  }
-  
-  .header-page2 button {
-    color: black;
-    padding: 0.5rem;
-    font-size: 2rem;
-    position: absolute;
-    left: 0.5rem;
-  }
-  
-  .header-page2 h1 {
-    flex-grow: 1;
-    text-align: center;
-  }
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  margin-left: auto;  
+}
 
-  
-  .cart-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 100%; 
-    padding: 0.5rem;
-  }
+.quantity-controls span {
+  font-weight: bold;
+  display: inline-block;
+  width: 3rem; 
+  text-align: center;
+}
 
-  .cart-body {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-  
-  .quantity-controls {
-    display: flex;
-    align-items: center;
-    margin-left: auto;  
-  }
-  
-  .quantity-controls span {
-    font-weight: bold;
-    display: inline-block;
-    width: 3rem; 
-    text-align: center;
-  }
-  
-  .quantity-controls button {
-    background-color: #FFCC2E;
-    border: none;
-    color: white;
-    padding: 0.4rem 1rem;
-    font-size: 1rem;
-    margin: 0 0.5rem;
-    cursor: pointer;
-    border-radius: 8px;
-  }
-  
-  
-  
-  .parent-container {
-    margin: 1rem;
-  }
-  
-  .cart-order {
-    display: flex;
-    justify-content: center;
-    padding: 1rem;
-    width: 100%;
-  }
-  
-  .cart-order button {
-    background-color: #FFCC2E;
-    border: none;
-    color: white;
-    width: 100%;
-    padding: 0.5rem 1rem;
-    text-align: center;
-    font-size: 1rem;
-    cursor: pointer;
-    border-radius: 8px;
-  }
-  .itemv2 {
-    flex: 1 0 auto;
-    width: 100%;
-    height: 10%;
-    display: flex;
-    align-items: center; 
-    border-bottom: 1px solid #e5e5e5;
-    justify-content: space-between;
-    width: 100%; 
-    padding: 0.5rem;
-  }
-  
-  .itemv2 .v2{
-    display: flex;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-  }
-  
-  .itemv2 .v2 img {
-    padding: 2%;
-    width: 25%;
-    height: 25%;
-    object-fit: cover;
-  }
-  
-  .itemv2 .title {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;  
-  }
-  
-  .itemv2 .title p {
-    font-size: 0.8rem;
-    font-weight: bold;
-    padding: 0.5rem;
-    border-radius: 8px;
-    text-align: left;
-  }
-  
-  .itemv2 .but-tonv2 {
-    background-color: #adadad;
-    border: none;
-    color: white;
-    padding: 0.5rem 1rem;
-    text-align: center;
-    margin: 0.5rem;
-    cursor: pointer;
-    border-radius: 8px;
-  }
-  .itemv2 .but-tonv2 p{
-    font-size: 0.8rem;
-    text-align: right;
-    max-width:min-content;
-    white-space: nowrap;  
-    overflow: hidden; 
-  }
+.quantity-controls button {
+  background-color: #FFCC2E;
+  border: none;
+  color: white;
+  padding: 0.4rem 1rem;
+  font-size: 1rem;
+  margin: 0 0.5rem;
+  cursor: pointer;
+  border-radius: 8px;
+}
 
-  .dialog-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: rgba(0, 0, 0, 0.6);
-    z-index: 1000;
-  }
-  
-  .dialog {
-    background-color: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 80%;
-    max-width: 400px;
-  }
-   
-  .dialog .rowd {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-    margin-top: 20px;
-  }
-  
-  .dialog .rowd img{
-    width: 25%;
-    height: 25%;
-    object-fit: cover;
-    border-radius: 10px;
-  }
-  
-  .dialog-overlay .dialog p {
-    font-size:0.9rem;
-    overflow: hidden;
-    font-weight: bold;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-  }
-  
-  .dialog .rowd p {
-    font-size: 0.9rem;
-    overflow: hidden;
-    font-weight: bold;
-    justify-content: center;
-    align-items: center;
-    text-align: left;
-  }
-  
-  .dialog-actions{
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .dialog-actions button {
-    padding: 10px 20px;
-    margin: 0 10px;
-    border: none;
-    border-radius: 5px;
-    background-color: #FFCC2E;
-    color: white;
-  }
-  
-  /*  */
 
-  .dialogv2 {
-    background-color: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 80%;
-    max-width: 400px;
-  }
-   
-  .dialogv2 .rowd {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-    margin-top: 20px;
-  }
-  
-  .dialogv2 .rowd img{
-    width: 45%;
-    height: 45%;
-    object-fit: cover;
-    border-radius: 10px;
-  }
-  
-  .dialog-overlay .dialogv2 p {
-    font-size: 1rem;
-    /* ไม่ขึ้นบรรทัดใหม่ */
-    white-space: nowrap;
-    overflow: hidden;
-    font-weight: bold;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-  }
-  
-  .dialogv2 .rowd p {
-    font-size: 1rem;
-    /* ไม่ขึ้นบรรทัดใหม่ */
-    white-space: nowrap;
-    overflow: hidden;
-    font-weight: bold;
-    justify-content: center;
-    align-items: center;
-    text-align: left;
-  }
-  
-  .dialogv2-actions{
-    display: flex;
-    justify-content: space-between;
-  }
-  /*   */
-  .dialog-actionsv2 button {
-    width: 100%;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    background-color: #FFCC2E;
-    color: white;
-  }
+.parent-container {
+  margin: 1rem;
+}
+
+
+.main-content .itemv2 {
+  flex: 1 0 auto;
+  width: 100%;
+  height: 20%;
+  display: flex;
+  align-items: center; 
+  border-bottom: 1px solid #e5e5e5;
+  justify-content: space-between;
+  width: 100%; 
+  padding: 0.5rem;
+}
+
+.itemv2 .v2{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.itemv2 .v2 img {
+  padding: 2%;
+  width: 25%;
+  height: 25%;
+  object-fit: cover;
+}
+
+.itemv2 .title {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;  
+}
+
+.itemv2 .title p {
+  font-size: 0.8rem;
+  font-weight: bold;
+  padding: 0.5rem;
+  border-radius: 8px;
+  text-align: left;
+}
+
+.itemv2 .but-tonv2 {
+  background-color: #adadad;
+  border: none;
+  color: white;
+  /* ให้ขนาดเท่ากันทุกอัน */
+  width: 6rem;
+  padding: 0.5rem 1rem;
+  text-align: center;
+  margin: 0.5rem;
+  cursor: pointer;
+  border-radius: 8px;
+}
+.itemv2 .but-tonv2 p{
+  font-size: 0.8rem;
+  text-align: right;
+  max-width:min-content;
+  white-space: nowrap;  
+  overflow: hidden; 
+}
+
+.dialog-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 1000;
+}
+
+.dialog {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 80%;
+  max-width: 400px;
+}
+ 
+.dialog .rowd {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.dialog .rowd img{
+  width: 25%;
+  height: 25%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.dialog-overlay .dialog p {
+  font-size:0.9rem;
+  overflow: hidden;
+  font-weight: bold;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.dialog .rowd p {
+  font-size: 0.9rem;
+  overflow: hidden;
+  font-weight: bold;
+  justify-content: center;
+  align-items: center;
+  text-align: left;
+}
+
+.dialog-actions{
+  display: flex;
+  justify-content: space-between;
+}
+
+.dialog-actions button {
+  padding: 10px 20px;
+  margin: 0 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #FFCC2E;
+  color: white;
+}

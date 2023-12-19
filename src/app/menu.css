@@ -1,0 +1,343 @@
+header {
+  position: sticky;
+  top: 0;
+  left: 0; /* เพิ่มบรรทัดนี้ */
+  z-index: 100; /* เพิ่มบรรทัดนี้ */
+  flex: 0 0 auto;
+  height: 5vh;
+  width: 100%;
+  background-color: white;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.tableid{
+  margin-top: 0.5rem;
+  margin-left: 1rem;
+  position: fixed;
+  background-color: white;
+  width: 6rem;
+  height: 2rem;
+  border-radius: 0.3rem;
+ }
+ .tableid p{
+  /* center */
+  padding: 2.5px;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+ }
+
+header nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    height: 100%;
+}
+
+.header-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.main-content {
+    flex: 1 0 auto;
+    width: 100%;
+    padding-bottom: 15vh;
+    min-height: 100vh;
+}
+.main-content .item{
+    display: flex;
+    flex-direction: row;
+    text-align: left;
+    padding-left: 5vw;
+    padding-right: 5vw;
+    width: 100%;
+    height: 10vh;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+ 
+.main-content .item .item-left {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.main-content .item .item-left h1{
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin: 0;
+    padding-left: 2vw;
+    width: 100%;
+    height: 10vh;
+}
+
+
+.main-content .item .item-left img{
+    width: 15vw;
+    height: 10vh;
+    object-fit: contain;
+    margin-right: 5vw;
+    border-radius: 10px;
+ }
+
+ .main-content .item .item-right {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    width: 10vw;
+    height: 5vh;
+ }
+
+.main-content .item .item-right span {
+    visibility: visible;  
+}
+.bg-yellow {
+    background-color: #FFCC2E;  
+}
+/* 
+footer {
+    flex: 0 0 auto;
+    position: sticky;
+    bottom: 0;
+    margin: 0;
+    height: 6vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;   
+    background-color: #FFCC2E; 
+}  
+
+ 
+
+
+
+
+.cart-orderv2{
+  flex: 0 0 auto;
+  position:fixed;;
+  bottom: 0;
+  padding-bottom: 4rem;
+  justify-content: center;
+  width: 100%;
+ }
+ .cart-orderv2 button {
+  background-color: #2ec7ff;
+  border: none;
+  color: white;
+  width: 100%;
+  padding: 0.5rem 1rem;
+  text-align: center;
+  font-size: 1rem;
+  cursor: pointer;
+ 
+} */
+
+.sticky {
+  /* position: -webkit-sticky; */
+  position: fixed;
+  bottom: 0;
+  height: 15vh;
+  width: 100vw;
+  align-items: center;
+  justify-content: center;
+  /* background: yellow; */
+}
+.cart-order, .cart-orderv2 {
+  position:fixed;
+  bottom: 0;
+  padding-bottom: 8vh;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-left: 2%;
+  margin-right: 2%;
+  width: 96%;
+}
+
+.cart-order button img{
+  width: 1.5rem;
+  height: 1.5rem;
+  object-fit: contain;
+  margin-right: 5vw;
+}
+
+.cart-order button {
+  justify-content: center;
+  background-color: #FFCC2E;
+  border: none;
+  color: white;
+  width: 100%;
+  padding: 0.5rem 1rem;
+  text-align: center;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: row;
+}
+
+
+.cart-orderv2 button {
+  justify-content: center;
+  background-color: #2e9dff;
+  border: none;
+  color: white;
+  width: 100%;
+  padding: 0.5rem 1rem;
+  text-align: center;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: row;
+}
+
+
+
+.sticky footer{
+  width: 100%;
+  flex: 0 0 auto;
+  position:fixed;
+  bottom: 0;
+  margin: 0;
+  height: 6vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;   
+  background-color: #FFCC2E; 
+
+}
+
+/* overlay */
+.overlay,
+.dialog-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000; /* เพิ่มบรรทัดนี้เพื่อให้มีค่า z-index สูงกว่า header */
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+  .modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1001; 
+    width: 80%; 
+    max-width: 500px; 
+    background: white;
+    padding: 20px;
+    box-sizing:  border-box;
+    border-radius: 8px;
+    box-shadow: 0 0 2px gray;
+  }
+  
+  .modal-header{
+    padding: 10px 0;
+    border-bottom: 1px solid #e5e5e5;
+  }
+  
+  .modal-footer {
+   
+    text-align: right;
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  .modal-body {
+    padding: 20px 0;
+    display: flex;
+  }
+  
+  .modal-img img {
+    width: 60%;
+    height: auto;  
+    object-fit: cover;
+  }
+  
+  .item-count {
+   
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .item-count span {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 0.3rem;
+    display: inline-block;
+    width: 2rem;  
+    text-align: center;  
+  }
+  
+  .count-btn, .modal-action {
+    background-color: #FFCC2E;
+    border: none;
+    color: white;
+    padding: 0.5rem 1rem;
+    text-align: center;
+    font-size: 1rem;
+    margin: 0.5rem;
+    cursor: pointer;
+    border-radius: 8px;
+  }
+  
+  /* overlay5 */
+  
+
+  .dialog-overlay .dialog p {
+    font-size:0.9rem;
+    overflow: hidden;
+    font-weight: bold;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .dialogv2 {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 400px;
+  }
+
+  .dialog-overlay .dialogv2 p {
+    font-size: 1rem;
+    white-space: nowrap;
+    overflow: hidden;
+    font-weight: bold;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .dialog-overlay .dialogv2  button{
+    margin-top: 20px;
+    width: 100%;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #FFCC2E;
+    color: white;
+  }
+
+
+  .active {
+    color: #FFCC2E;
+}

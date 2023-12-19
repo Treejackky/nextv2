@@ -1,141 +1,53 @@
-/* @tailwind base;
+
+@tailwind base;
 @tailwind components;
-@tailwind utilities; */
+@tailwind utilities;
 
+@font-face {
+  font-family: 'Kanit';
+  src: url('../../public/Kanit-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
 
+* {
+  font-family: 'Kanit', sans-serif;
+}
 
-
-html, body{
+html {
     height: auto;
-    width: auto;
+    width: auto;   
     margin: 0;
     padding: 0;
-    font-family: 'Roboto', sans-serif;
- 
-}
-
-.header-img img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-header{
-    position: sticky;
-    top: 0;
-    flex: 0 0 auto;
-    height: 5vh;
-    width: 100%;
-    background-color: white;
-    border-bottom: 1px solid #e5e5e5;
- }
-
-header nav{
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    width: 100%;
-    height: 100%;
-}
-
-.main-content {
-    flex: 1 0 auto;
-    width: 100%;
-    height: 10%;
-    
-}
-
-.main-content .item{
-    display: flex;
-    text-align: left;
-    padding-left: 5vw;
-    padding-right: 5vw;
-    width: 100%;
-    height: 10%;
-    border-bottom: 1px solid #e5e5e5;
-
-}
-
-.main-content .item .item-left {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    padding-left: 10px;
-    padding-right: 10px;
-}
-
-.main-content .item .item-left h1{
-    font-size: 0.9rem;
-    font-weight: 500;
-    margin: 0;
-    padding-left: 2vw;
-    width: 100%;
-    height: 10vh;
-}
-
-.main-content .item .item-left img{
-    padding: 2%;
-    width: 25%;
-    height: 25%;
-    object-fit: cover;
-}
-
- 
-.main-content .item .item-right {
-    align-items: center;
-    text-align: center;
-    justify-content: center;
-    width: 10%;
-    height: 20%;
-    background-color: #FFCC2E;
- }
- 
-
-footer {
-    flex: 0 0 auto;
-    position: sticky;
-    bottom: 0;
-    margin: 0;
-    height: 15vh;
+   }
+  
+  body{
     display: flex;
     flex-direction: column;
-    justify-content: space-around;      
-   
+    height: auto;
+    width: auto;    
+    margin: 0;
+    padding: 0;
+ 
   }
 
-footer .footer1 {
-    width: 100%;
-    height: 50%;
-    display: flex;
-    flex-direction: row;
-    background-color: #9b9b9b;
-}
-footer .footer2 {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-content: center;
-    background-color: #FFCC2E;
-}
-/* footer button{
-    background-color: #FFCC2E;
-    justify-content: space-around;
-    width: 100%;
-    height: 100%;
-} */
 
-/* hide scroll bar  */
+header{
+    flex: 0 0 auto;
+}
 
+.main-content{
+    flex: 1 0 auto;
+}
+
+footer{
+    flex: 0 0 auto;
+}
+
+ 
+
+
+/* remove scroll bar */
 ::-webkit-scrollbar {
     display: none;
 }
-
-.active {
-     color: #FFCC2E;
- 
-}
-
- 

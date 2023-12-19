@@ -149,30 +149,28 @@ export default function Index({ params }: Props) {
         const element = document.getElementById(grpSub);
         if (element) {
           const bounding = element.getBoundingClientRect();
-          if (
-            bounding.top >= 0 &&
-            bounding.bottom <=
-              (window.innerHeight || document.documentElement.clientHeight)
-          ) {
-            setActiveSection(grpSub);
-          }
+            if (
+              bounding.top >= 0 &&
+              bounding.bottom <=
+                (window.innerHeight || document.documentElement.clientHeight)
+            ) {
+              setActiveSection(grpSub);
+            }
         }
       });
     };
 
-    // Attach the event listener
     window.addEventListener("scroll", handleScroll);
 
-    // Clean up the event listener
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, [uniqueGrpSubs]);
 
-  // Scroll to position
   const scrollToPosition = (grpSub: any) => {
-    setActiveSection(grpSub); // Set the active section
     const element = document.getElementById(grpSub);
+    setActiveSection(grpSub);
+
     if (element) {
       const pos = element.getBoundingClientRect();
       window.scrollTo({
@@ -258,26 +256,28 @@ export default function Index({ params }: Props) {
   const Menu = () => {
     return (
       <>
-        <div className="header-img">
-          <img
-            src={`https://posimg.s3.ap-southeast-1.amazonaws.com/header.jpg`}
-            alt="Imgfood"
-          />
-        </div>
-        <header>
-          <nav>
-            {uniqueGrpSubs.map((grpSub) => (
-              <button
-                key={grpSub}
-                onClick={() => scrollToPosition(grpSub)}
-                className={activeSection === grpSub ? "active" : ""}
-              >
-                <p>{grpSub}</p>
-              </button>
-            ))}
-          </nav>
-        </header>
+      <div className="tableid"><p>โต๊ะ : {TableID}</p></div>
+       <div className="header-img">
+            <img
+              src={`https://posimg.s3.ap-southeast-1.amazonaws.com/header.jpg`}
+              alt="Imgfood"
+            />
+          </div>
+          <header>
+            <nav>
+              {uniqueGrpSubs.map((grpSub) => (
+                <button
+                  key={grpSub}
+                  onClick={() => scrollToPosition(grpSub)}
+                  className={activeSection === grpSub ? "active" : ""}
+                >
+                  <p>{grpSub}</p>
+                </button>
+              ))}
+            </nav>
+          </header>
         <div className="main-content">
+       
           {filteredData.map((item, idx) => (
             <button
               onClick={() => handleItemClick(item)}
@@ -303,11 +303,16 @@ export default function Index({ params }: Props) {
                   <p>0.00฿</p>
                 </div>
               </div>
-              <div className="item-right">
-              {cart
-                .map((cartItem: any) => cartItem.ItemCode)
-                .includes(item.ItemCode) && (
-               
+              <div
+                className={`item-right ${
+                  cart.some((cartItem:any) => cartItem.ItemCode === item.ItemCode)
+                    ? "bg-yellow"
+                    : ""
+                }`}
+              >
+                {cart
+                  .map((cartItem: any) => cartItem.ItemCode)
+                  .includes(item.ItemCode) && (
                   <span>
                     {
                       cart.find(
@@ -315,12 +320,13 @@ export default function Index({ params }: Props) {
                       )?.Quantity
                     }
                   </span>
-              
-              )}
-                </div>
+                )}
+              </div>
             </button>
           ))}
         </div>
+        {/* {isBar()} */}
+         {isFooter()}
         {overlay && selectedItem && (
           <div className="overlay">
             <div className="modal">
@@ -386,20 +392,19 @@ export default function Index({ params }: Props) {
             </div>
           </div>
         )}
-        {Footer()}
         {overlay5 && cart.length > 0 && (
           <div className="dialog-overlay">
             <div className="dialogv2">
               <p>
-                คุณมีสินค้าอยู่ในตะกร้า และ <br /> ยังไม่ได้กดสั่งอาหาร?
+                คุณมีสินค้าอยู่ในตะกร้า <br /> อย่าลืมกดสั่งอาหารนะค่ะ :{")"}
               </p>
-              <div className="rowd"></div>
               <div className="dialog-actionsv2">
                 <button onClick={() => [setOverlay5(false)]}>ตกลง</button>
               </div>
             </div>
           </div>
         )}
+       
       </>
     );
   };
@@ -447,13 +452,14 @@ export default function Index({ params }: Props) {
 
     return (
       <>
-        <div className="header-page2">
+         <div className="header-page2">
           <button onClick={() => [setPage(1), setOverlay5(true)]}>x</button>
           <div>
             {" "}
             <h1>ตะกร้า</h1> <p>ข้อมูล ณ เวลา {ftime}</p>
           </div>
         </div>
+         <div className="main-content">
         <div className="cart-container">
           {cart.map((item: any, index: any) => (
             <div className="itemv2" key={index}>
@@ -552,18 +558,11 @@ export default function Index({ params }: Props) {
             </div>
           )}
         </div>
-        <footer>
-          <div className="cart-order">
-            <button
-              onClick={() => [
-                setOverlay4(true),
-                localStorage.removeItem("cart"),
-              ]}
-            >
-              สั่ง {cart.length} รายการ
-            </button>
-          </div>
-        </footer>
+
+        </div>
+ 
+        {/* {isBar()} */}
+        {isFooter()}
       </>
     );
   };
@@ -579,54 +578,99 @@ export default function Index({ params }: Props) {
             <p>ข้อมูล ณ เวลา {new Date().toLocaleTimeString()}</p>
           </div>
         </nav>
-        {order.map((item: any, index: any) => (
-          <div className="itemv2" key={index}>
-            <div className="v2">
-              {foodimg.includes(item.ItemCode) && (
-                <img
-                  src={`https://posimg.s3.ap-southeast-1.amazonaws.com/${item.ItemCode}.jpg`}
-                  alt="Imgfood"
-                />
-              )}
-              {!foodimg.includes(item.ItemCode) && (
-                <img
-                  src={`https://scontent.fbkk22-8.fna.fbcdn.net/v/t1.18169-9/15171213_1701469426835212_8933784202474239947_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=7a1959&_nc_eui2=AeHp2FqDLoKshdhQeUw5ExIngVz7a8IZt3aBXPtrwhm3dsV2uCgo229usGamJT6xe6e8bLhc0P2Jv5P0MPeTLFo6&_nc_ohc=uRlLMHBCO3AAX8aSm7k&_nc_ht=scontent.fbkk22-8.fna&oh=00_AfDB3yRdRwkzzMGmj4nEY4mfGh4hQWInNJ07IEaVqEwpKQ&oe=65A7657A`}
-                  alt="Imgfood"
-                />
-              )}
-              <div className="title">
-                <p>{item.ItemSupp}</p>
-                <p>0.00฿</p>
+        <div className="main-content">
+          {order.map((item: any, index: any) => (
+            <div className="itemv2" key={index}>
+              <div className="v2">
+                {foodimg.includes(item.ItemCode) && (
+                  <img
+                    src={`https://posimg.s3.ap-southeast-1.amazonaws.com/${item.ItemCode}.jpg`}
+                    alt="Imgfood"
+                  />
+                )}
+                {!foodimg.includes(item.ItemCode) && (
+                  <img
+                    src={`https://scontent.fbkk22-8.fna.fbcdn.net/v/t1.18169-9/15171213_1701469426835212_8933784202474239947_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=7a1959&_nc_eui2=AeHp2FqDLoKshdhQeUw5ExIngVz7a8IZt3aBXPtrwhm3dsV2uCgo229usGamJT6xe6e8bLhc0P2Jv5P0MPeTLFo6&_nc_ohc=uRlLMHBCO3AAX8aSm7k&_nc_ht=scontent.fbkk22-8.fna&oh=00_AfDB3yRdRwkzzMGmj4nEY4mfGh4hQWInNJ07IEaVqEwpKQ&oe=65A7657A`}
+                    alt="Imgfood"
+                  />
+                )}
+                <div className="title">
+                  <p>{item.ItemSupp}</p>
+                  <p>0.00฿</p>
+                </div>
               </div>
+              <button className="but-tonv2">
+                <p>{new Date(item.PostTime).toLocaleTimeString()}</p>
+              </button>
             </div>
-            <button className="but-tonv2">
-              <p>{new Date(item.PostTime).toLocaleTimeString()}</p>
-            </button>
-          </div>
-        ))}
+          ))}
+        </div>
+        {/* {isBar()} */}
+        {isFooter()}
       </>
     );
   };
 
-  const Footer = () => {
+  const isFooter = () => {
     return (
-      <footer>
-        <div className="cart-order">
-          <button id="cart" onClick={isChanged}>
-            {" "}
-            รายการในตะกร้า {cart.length} รายการ
-          </button>
-        </div>
-        <div className="footer2">
+      <>
+   
+        <div className="sticky">
+        {isBar()}
+        <footer>
           <button id="menu" onClick={isChanged}>
-            Menu
+            เมนู
           </button>
           <button id="order" onClick={isChanged}>
-            Order
+            รายการที่สั่ง
           </button>
+        </footer>
         </div>
-      </footer>
+      </>
     );
+  };
+  
+   const isBar = () => {
+    {
+      if (page == 1 && cart.length > 0) {
+        return (
+          <>
+          <br/><br/><br/>
+           <div className="cart-order">
+              <button id="cart" onClick={isChanged}>
+                {" "}
+                {<img src="cart.svg"/>}
+                รายการในตะกร้า {cart.length} รายการ
+              </button>
+            </div>
+          </>
+        );
+      }else if(page == 2 && cart.length > 0){
+        return <>
+        <br/><br/><br/>
+        <div className="cart-order">
+            <button
+              onClick={() => [
+                setOverlay4(true),
+                localStorage.removeItem("cart"),
+              ]}
+            >
+              สั่ง {cart.length} รายการ
+            </button>
+          </div>
+        </>
+      }
+      else if(page == 3 && order.length > 0){
+        return <>
+        <br/><br/><br/>
+        <div className="cart-orderv2">
+            <button>
+              ราคาทั้งหมด 0.00 ฿
+            </button>
+          </div>
+        </>
+      }
+    }
   };
 
   return <>{isPage()}</>;
