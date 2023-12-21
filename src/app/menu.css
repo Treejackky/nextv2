@@ -13,6 +13,20 @@ header {
 /*  */
 .tableid {
   position: absolute;
+  top: 3.5rem;
+  left: 1rem;
+  background-color: white;
+  width: 30vw;
+  height: 5vh;
+  border-radius: 0.3rem;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1; 
+}
+.tableid2{
+  position: absolute;
   top: 0.5rem;
   left: 1rem;
   background-color: white;
@@ -25,7 +39,6 @@ header {
   justify-content: center;
   z-index: 1; 
 }
-
 .header-img {
   z-index: 0;  
 }

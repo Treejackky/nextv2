@@ -8,6 +8,7 @@ type Props = {
 export default function Index({ params }: Props) {
   const [data, setData] = useState<any[]>([]);
   const [OutleID, setOutletID] = useState<any>(0);
+  const [OutletName, setOutletName] = useState<any>("");
   const [TableID, setTableID] = useState<any>(0);
   const [pkg, setPkg] = useState<any>("");
   const [WaiterID, setWaiterID] = useState<any>(0);
@@ -35,6 +36,7 @@ export default function Index({ params }: Props) {
       setTableID(data.TableID);
       setPkg(data.Package);
       setWaiterID(data.WaiterID);
+      setOutletName(data.OutletName);
     });
   }, []);
 
@@ -260,6 +262,7 @@ export default function Index({ params }: Props) {
     return (
       <>
       <div className="tableid"><p>โต๊ะ : {TableID}</p></div>
+      <div className="tableid2"><p>สาขา : {OutletName}</p></div>
        <div className="header-img">
             <img
               src={`https://posimg.s3.ap-southeast-1.amazonaws.com/header.jpg`}
