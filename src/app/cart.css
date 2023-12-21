@@ -141,7 +141,7 @@
 .itemv2 .title p {
   font-size: 0.8rem;
   font-weight: bold;
-  padding: 0.5rem;
+  /* padding: 0.5rem; */
   border-radius: 8px;
   text-align: left;
 }

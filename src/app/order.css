@@ -47,3 +47,27 @@
     flex-grow: 1;
     text-align: center;
   }
+
+  .titlep2{
+    display: flex;
+  }
+
+  .titlep2 p{
+  margin-right: 1vh;
+  padding: 0.5rem;
+  width: 15vw;
+  /* align-self: center;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  text-align: center; */
+  font-size: 1.5rem;
+  background-color:cornsilk;
+  border: #FFCC2E 2px solid;   
+  }
+
+  .titlep1 p{
+    display: flex;
+    font-size: 1.5rem;
+    width: fit-content;
+  }

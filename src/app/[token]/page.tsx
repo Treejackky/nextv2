@@ -302,7 +302,7 @@ export default function Index({ params }: Props) {
                 )}
                 <div>
                   <p>{item.Name}</p>
-                  {/* <p>0.00฿</p> */}
+                  {item.UnitPrice !=0 ? <p>{item.UnitPrice}฿</p> : ""}
                 </div>
               </div>
               <div
@@ -493,7 +493,8 @@ export default function Index({ params }: Props) {
                 )}
                 <div className="title">
                   <p>{item.ItemSupp}</p>
-                  {/* <p>0.00฿</p> */}
+                  {item.UnitPrice !=0 ? <p>{item.UnitPrice} ฿</p> : ""}
+
                 </div>
               </div>
               <div className="cart-body">
@@ -616,7 +617,10 @@ export default function Index({ params }: Props) {
                 )}
                 <div className="title">
                   <p>{item.ItemSupp}</p>
-                  {/* <p>{item.UnitPrice}</p> */}
+                 <div className="titlep2">
+                 <p>X {item.Quantity}</p>
+                 {item.UnitPrice !=0 ? <p>{item.UnitPrice} ฿</p> : ""}
+                 </div>
                 </div>
               </div>
               <button className="but-tonv2">
