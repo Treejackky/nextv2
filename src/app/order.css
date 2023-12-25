@@ -5,11 +5,12 @@
     width: 100vw;
     align-items: center;
     justify-content: center;
+    z-index: 1;
   }
   
   .header-page3 img{
-    width: 1.5rem;
-    height: 1.5rem;
+    width: 2.5rem;
+    height: 2.5rem;
     object-fit: contain;
   }
   
@@ -29,7 +30,7 @@
     font-weight: bold;
     background-color: #FFCC2E; 
   }
-  
+   
   .header-page3 div p {
     color: black;
     font-size: 0.8rem;
@@ -48,26 +49,66 @@
     text-align: center;
   }
 
-  .titlep2{
+
+  .title_order{
     display: flex;
+    flex-direction: row;
+    justify-content: right;
+    align-items: center;
+    width: 60%;
+    height: 100%;
+    z-index: 0;
+    /* background-color:rebeccapurple; */
   }
 
-  .titlep2 p{
-  margin-right: 1vh;
-  padding: 0.5rem;
+  .titlep3 p{
+    position:relative;
+    margin-right: 1vw;
+    width: 10vw;
+    align-self: center;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 1rem;
+    background-color:cornsilk;
+    border: #FFCC2E 2px solid;   
+  }
+
+
+ /*   .titlep3 p  is ช่องว่าง ไม่ต้องแสดงสี */
+  
+
+ .titlep2 p {
+  position: relative;
+  margin-right: 1vw;
+  height: 10%;
   width: 15vw;
-  /* align-self: center;
+  align-self: center;
   align-items: center;
   align-content: center;
   justify-content: center;
-  text-align: center; */
-  font-size: 1.5rem;
-  background-color:cornsilk;
-  border: #FFCC2E 2px solid;   
-  }
+  text-align: center;
+  font-size: 1rem;
+}
 
-  .titlep1 p{
-    display: flex;
-    font-size: 1.5rem;
-    width: fit-content;
+.titlep2 p.hasPrice {
+  border: #FFCC2E 2px solid;
+  background-color: cornsilk;
+}
+
+.titlep2 p.noPrice {
+  background-color: transparent;
+}
+
+  .itemv2 .but-tonv2 {
+    border: none;
+    color: black;
+    text-align: right;
+    border-radius: 8px;
+    width: 100%;
   }
+  .itemv2 .but-tonv2 p{
+    font-size: 0.8rem;
+  }
+  

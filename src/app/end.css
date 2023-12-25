@@ -1,0 +1,20 @@
+.EndKanoi{
+    padding-top: 11vh;
+    margin: auto;
+    width: 100%;
+}
+
+.EndKanoi img{
+    width:  100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.EndKanoi h1{
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    color: #FFCC2E;
+}
