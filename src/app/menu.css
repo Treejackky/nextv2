@@ -5,28 +5,46 @@ header {
   z-index: 100;  
   flex: 0 0 auto;
   height: 5vh;
-  width: auto;
+  width: 100%;
   background-color: white;
   border-bottom: 1px solid #e5e5e5;
 }
+ 
 
 header nav {
   display: flex;
   align-items: center;
   justify-content: flex-start; 
-  width: 100%;
+  width: auto;
   height: 100%;
   overflow-x: auto;  
+  overflow-y: hidden; 
+}
+
+header nav button.active {
+   color: #FFCC2E;
+  border-bottom: 2px solid #FFCC2E;
+}
+
+header nav.scrolled {
+  transform: translateX(-50px);
 }
 
 
+header nav.scrolled {
+  transform: translateX(-50px);  
+}
+ 
 button {
   flex: 0 0 auto;
   white-space: nowrap; 
   padding: 0.5rem 1rem;
-
 }
 
+  /* .active {
+  color: #FFCC2E;
+ 
+} */
 
 /*  */
 .tbid{
@@ -40,12 +58,10 @@ button {
   align-items: left;
   flex-direction: row;
   top: 2.5vh;
-
   z-index: 2; 
 }
 
  
-
 .tableid, .tableid2,.language, .prmstd {
   /* position: absolute; */
   /* top: 3.5rem; */
@@ -265,12 +281,21 @@ footer {
   background-color: #FFCC2E; 
 
 }
-.text_price2 p {
-  font-size: 0.9rem;
+
+.text_price2{
   width: 100%;
-   white-space: normal;
+  word-wrap: break-word;
+
+}
+
+.text_price2 p {
+  font-size: 0.8rem;
+  width: 100%;
+  /* background-color: #2e9dff; */
+  white-space: normal;
   overflow-wrap: break-word;
 }
+
 
 .text_price{
   display: flex;
@@ -412,10 +437,5 @@ footer {
   }
 
 
-  .active {
-  color: #FFCC2E;
- 
-}
 
 
- 

@@ -115,6 +115,7 @@ export default function Index({ params }: Props) {
     }
   }, [cart, ftime]);
 
+
   const foodimg = [
     "51306",
     "51307",
@@ -169,17 +170,35 @@ export default function Index({ params }: Props) {
 
   const uniqueGrpSubs = Array.from(new Set(data.map((item) => item.MenuCode)));
 
+  
+  useEffect(() => {
+
+    
+    
+  }),[uniqueGrpSubs];
+
+  const scrollToPosition = (grpSub: any) => {
+    const element = document.getElementById(grpSub);
+    setActiveSection(grpSub);
+    if (element) {
+
+      const pos = element.getBoundingClientRect();
+
+      window.scrollTo({
+        top: pos.top + window.pageYOffset - 40,
+        behavior: "smooth",
+      });
+    }
+  };
+  
   useEffect(() => {
     const handleScroll = () => {
       uniqueGrpSubs.forEach((MenuCode) => {
+        // console.log(MenuCode)
         const element = document.getElementById(MenuCode);
         if (element) {
-          const bounding = element.getBoundingClientRect();
-          if (
-            bounding.top >= 0 &&
-            bounding.bottom <=
-              (window.innerHeight || document.documentElement.clientHeight)
-          ) {
+          const pos = element.getBoundingClientRect();
+          if (pos.top <= 50 && pos.bottom >= 50) {
             setActiveSection(MenuCode);
           }
         }
@@ -193,18 +212,7 @@ export default function Index({ params }: Props) {
     };
   }, [uniqueGrpSubs]);
 
-  const scrollToPosition = (grpSub: any) => {
-    const element = document.getElementById(grpSub);
-    setActiveSection(grpSub);
-
-    if (element) {
-      const pos = element.getBoundingClientRect();
-      window.scrollTo({
-        top: pos.top + window.pageYOffset - 40,
-        behavior: "smooth",
-      });
-    }
-  };
+ 
 
   const handleItemClick = (item: any) => {
     setSelectedItem(item);
@@ -221,9 +229,7 @@ export default function Index({ params }: Props) {
       total += item.GrossPrice;
     }
     return total;
-  }
-  
-  
+  } 
 
   const addToCart = (item: any, countItem: any) => {
     setCart((prevCart: any[]) => {
@@ -275,9 +281,9 @@ export default function Index({ params }: Props) {
   const isChanged = (e: any) => {
     // console.log(e.target.id);
     if (e.target.id == "menu") {
-      return [setPage(1)];
+      return [setPage(1),window.scrollTo(0, 0)];
     } else if (e.target.id == "cart") {
-      return [setPage(2)];
+      return [setPage(2),window.scrollTo(0, 0)];
     } else if (e.target.id == "order") {
       getOrder(TableID, OutleID, orderID)
         .then((orderData) => {
@@ -287,8 +293,7 @@ export default function Index({ params }: Props) {
         .catch((error) => {
           // console.error("Error fetching order data:", error);
         });
-
-      return setPage(3);
+      return [setPage(3), window.scrollTo(0, 0)];
     }
   };
 
@@ -306,6 +311,8 @@ export default function Index({ params }: Props) {
     }
   };
 
+
+  
   const Menu = () => {
     return (
       <>
@@ -348,14 +355,12 @@ export default function Index({ params }: Props) {
                   }
                 }}
               >
-                {language}
+                {language == "Eng" ? "ไทย" : "Eng"}
               </button>
             </p>
-          </div>
-          
+          </div> 
          </div>
         </div>
-        
         <div className="header-img">
           <img
             src={`https://posimg.s3.ap-southeast-1.amazonaws.com/header.jpg`}
@@ -363,22 +368,27 @@ export default function Index({ params }: Props) {
           />
         </div>
         <header>
-          <nav>
+        <nav>
             {uniqueGrpSubs.map((MenuCode) => (
+       
+          
               <button
                 key={MenuCode}
                 onClick={() => scrollToPosition(MenuCode)}
-                className={activeSection === MenuCode ? "active" : ""}
-              >
+                // onKeyPress={() => scrollToPosition(MenuCode)}
+                className={activeSection === MenuCode ? "active" : ""}>
                 <p>
                   {language == "Thai"
                     ? MenuName.Thai[MenuCode]
-                    : MenuName.Eng[MenuCode]}
+                    : MenuName.Eng[MenuCode]
+                  }
                 </p>
               </button>
+           
+       
             ))}
-          </nav>
-        </header>
+            </nav>
+            </header>
         <div className="main-content">
           {filteredData.map((item, idx) => (
             <button
@@ -458,11 +468,15 @@ export default function Index({ params }: Props) {
                               cartItem.ItemCode === selectedItem.ItemCode &&
                               cartItem.Quantity > 0
                           );
-                          if (isItemInCart) {
-                            addToCart(selectedItem, 0);
-                          } else {
-                            return 0;
-                          }
+                          return 0;
+
+
+                          // if (isItemInCart) {
+                          //   console.log("remove item from cart"+isItemInCart);
+                          //   addToCart(selectedItem, 0);
+                          // } else {
+                          //   return 0;
+                          // }
                         }
                         return prevCount;
                       });
