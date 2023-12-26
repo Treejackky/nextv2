@@ -15,6 +15,7 @@ export default function Index({ params }: Props) {
   const [filter, setFilter] = useState<string>("");
   const [MenuName, setMenuName] = useState<any>({});
   const [language, setLanguage] = useState<any>(0);
+  const [orderID, setOrderID] = useState<any>(0);
   const [filteredData, setFilteredData] = useState<any[]>([]);
   const [cart, setCart] = useState<any>([]);
   const [page, setPage] = useState<any>(0);
@@ -45,6 +46,7 @@ export default function Index({ params }: Props) {
       setWaiterID(data.WaiterID);
       setOutletName(data.OutletName);
       setMenuName(data.MenuName);
+      setOrderID(data.OrderID);
       setLanguage("Thai");
       setPage(1);
       console.log(data.items);
@@ -277,7 +279,7 @@ export default function Index({ params }: Props) {
     } else if (e.target.id == "cart") {
       return [setPage(2)];
     } else if (e.target.id == "order") {
-      getOrder(TableID, OutleID)
+      getOrder(TableID, OutleID, orderID)
         .then((orderData) => {
           setOrder(orderData.orders);
           // console.log(order);
@@ -971,11 +973,12 @@ export default function Index({ params }: Props) {
 // {language == "Thai" 
 // ? "ราคาทั้งหมด 0.00 ฿ ไม่รวม Vat"
 // : "Total price 0.00 Baht (Vat not included)"}
-export async function getOrder(TableID: any, OutletID: any) {
+export async function getOrder(TableID: any, OutletID: any, orderID: any) {
   let zlib = require("zlib");
   let cart_ord = {
     OutletID: OutletID,
     TableID: TableID,
+    OrderID: orderID,
   };
   let body = zlib.deflateSync(JSON.stringify(cart_ord));
   let res = await fetch("http://54.179.86.5:8765/v1/order", {
