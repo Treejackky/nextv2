@@ -265,12 +265,13 @@ footer {
   background-color: #FFCC2E; 
 
 }
-.text_price2{
-  font-size: 0.8rem;
+.text_price2 p {
+  font-size: 0.9rem;
   width: 100%;
-  word-wrap: break-word
- 
+   white-space: normal;
+  overflow-wrap: break-word;
 }
+
 .text_price{
   display: flex;
   flex-direction: row;
