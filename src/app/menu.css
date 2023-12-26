@@ -9,13 +9,26 @@ header {
   background-color: white;
   border-bottom: 1px solid #e5e5e5;
 }
-header nav{
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    width: 100%;
-    height: 100%;
+
+header nav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  height: 100%;
+  overflow-x: auto;
 }
+
+
+ 
+
+button {
+  flex: 0 0 auto;
+  white-space: nowrap; 
+  padding: 0.5rem 1rem;
+
+}
+
 
 /*  */
 .tbid{
@@ -397,5 +410,5 @@ footer {
 
 
   .active {
-    color: #FFCC2E;
+  color: #FFCC2E;
 }

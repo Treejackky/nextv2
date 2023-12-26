@@ -204,6 +204,21 @@ export default function Index({ params }: Props) {
     }
   };
 
+
+
+  const scrollToMenu = (e:any) => {
+    const element = document.getElementById(e);
+  
+    if (element) {
+      const pos = element.getBoundingClientRect();
+      window.scrollTo({
+        left: pos.left + window.scrollX,
+        behavior: "smooth",
+      });
+    }
+  };
+  
+
   const handleItemClick = (item: any) => {
     setSelectedItem(item);
     setOverlay(true);
@@ -362,19 +377,21 @@ export default function Index({ params }: Props) {
         </div>
         <header>
           <nav>
-            {uniqueGrpSubs.map((MenuCode) => (
-              <button
-                key={MenuCode}
-                onClick={() => scrollToPosition(MenuCode)}
-                className={activeSection === MenuCode ? "active" : ""}
-              >
-                <p>
-                  {language == "Thai"
-                    ? MenuName.Thai[MenuCode]
-                    : MenuName.Eng[MenuCode]}
-                </p>
-              </button>
-            ))}
+          {uniqueGrpSubs.map((MenuCode) => (
+            <button
+              key={MenuCode}
+              onClick={() => scrollToPosition(MenuCode)}
+              className={activeSection === MenuCode ? "active" : ""}
+              data-menu={MenuCode} 
+            >
+              <p>
+                {language == "Thai"
+                  ? MenuName.Thai[MenuCode]
+                  : MenuName.Eng[MenuCode]}
+              </p>
+            </button>
+          ))}
+
           </nav>
         </header>
         <div className="main-content">
@@ -737,7 +754,7 @@ export default function Index({ params }: Props) {
                             setOverlay4(false);
                             
                           } else {
-                            postItem(cart);
+                            // postItem(cart);
                             setCart([]);
                             setOverlay4(false);
                             setPage(1);
