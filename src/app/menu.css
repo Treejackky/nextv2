@@ -19,20 +19,14 @@ header nav {
   height: 100%;
   overflow-x: auto;  
   overflow-y: hidden; 
+  scroll-behavior: smooth;
+  transition: scroll-behavior 0.3s ease;
+  -webkit-overflow-scrolling: touch;
 }
 
 header nav button.active {
    color: #FFCC2E;
   border-bottom: 2px solid #FFCC2E;
-}
-
-header nav.scrolled {
-  transform: translateX(-50px);
-}
-
-
-header nav.scrolled {
-  transform: translateX(-50px);  
 }
  
 button {

@@ -31,7 +31,7 @@ export default function Index({ params }: Props) {
   const [overlay8, setOverlay8] = useState(false);
   const [order, setOrder] = useState<any>([]);
   const [ftime, setFTime] = useState<any>(0);
-  const [activeSection, setActiveSection] = useState(null);
+  const [activeSection, setActiveSection] = useState(1);
   const [originalCount, setOriginalCount] = useState(0);
   const [error, setError] = useState<any>({});  
 
@@ -170,36 +170,40 @@ export default function Index({ params }: Props) {
 
   const uniqueGrpSubs = Array.from(new Set(data.map((item) => item.MenuCode)));
 
-  
-  useEffect(() => {
-
-    
-    
-  }),[uniqueGrpSubs];
-
   const scrollToPosition = (grpSub: any) => {
     const element = document.getElementById(grpSub);
     setActiveSection(grpSub);
     if (element) {
-
       const pos = element.getBoundingClientRect();
-
       window.scrollTo({
         top: pos.top + window.pageYOffset - 40,
         behavior: "smooth",
       });
+
+      const nav = document.querySelector("nav");
+      const activeBtn = document.querySelector(".active");
+      if (nav && activeBtn) {
+        const pos2 = activeBtn.getBoundingClientRect();
+        nav.scrollLeft = pos2.left;
+      }
     }
   };
   
   useEffect(() => {
     const handleScroll = () => {
       uniqueGrpSubs.forEach((MenuCode) => {
-        // console.log(MenuCode)
         const element = document.getElementById(MenuCode);
         if (element) {
           const pos = element.getBoundingClientRect();
           if (pos.top <= 50 && pos.bottom >= 50) {
+            console.log(MenuCode)            
+            const nav = document.querySelector("nav");
+            const activeBtn = document.querySelector(".active");
             setActiveSection(MenuCode);
+            if (nav && activeBtn) {
+              const pos2 = activeBtn.getBoundingClientRect();
+              nav.scrollLeft = pos2.left;
+            }
           }
         }
       });
@@ -210,9 +214,33 @@ export default function Index({ params }: Props) {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [uniqueGrpSubs]);
+  }, [uniqueGrpSubs, activeSection]);
 
- 
+  useEffect(() => {
+    let debounceTimer: any;
+    const handleScroll = () => {
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(() => {
+        uniqueGrpSubs.forEach((MenuCode) => {
+          const element = document.getElementById(MenuCode);
+          if (element) {
+            const pos = element.getBoundingClientRect();
+            if (pos.top <= 50 && pos.bottom >= 50) {
+              setActiveSection(MenuCode);
+             }
+          }
+        });
+      }, 100);  
+    };
+  
+    window.addEventListener("scroll", handleScroll);
+  
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      clearTimeout(debounceTimer);
+    };
+  }, [uniqueGrpSubs, activeSection]);
+  
 
   const handleItemClick = (item: any) => {
     setSelectedItem(item);
@@ -982,7 +1010,6 @@ export default function Index({ params }: Props) {
   }
   return <>{isPage()}</>;
 }
-
 
 // {language == "Thai" 
 // ? "ราคาทั้งหมด 0.00 ฿ ไม่รวม Vat"
