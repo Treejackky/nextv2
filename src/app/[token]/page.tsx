@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, use } from "react";
 
 type Props = {
   params: any;
@@ -34,27 +34,43 @@ export default function Index({ params }: Props) {
   const [activeSection, setActiveSection] = useState(1);
   const [originalCount, setOriginalCount] = useState(0);
   const [error, setError] = useState<any>({});  
+  let n = 0;
 
   useEffect(() => {
-    getItem(params, OutleID, TableID).then((data) => {
-      setPkg(data.Package);
-      // console.log(data.Package);
-      if(data.Package == "prm" || data.Package == "std"){
-      setData(data.items);
-      setOutletID(data.OutletID);
-      setTableID(data.TableID);
-      setWaiterID(data.WaiterID);
-      setOutletName(data.OutletName);
-      setMenuName(data.MenuName);
-      setOrderID(data.OrderID);
-      setLanguage("Thai");
-      setPage(1);
-      console.log(data.items);
-      }else{
-        setPage(4);
-      }
-    });
+    if(n == 0){
+      n=1;
+      getItem(params, OutleID, TableID).then((data) => {
+        setPkg(data.Pkg);
+        if(data.Pkg == "P" || data.Pkg == "S"){
+        const orid = localStorage.getItem("orderID");
+        // console.log(orid);
+        if(data.OrderID != orid){
+          localStorage.removeItem("cart");
+          setCart([]);
+          localStorage.setItem("orderID", data.OrderID);
+          // console.log("remove");
+          // console.log(orid);
+        }
+        setOrderID(data.OrderID);
+        setData(data.items);
+        setOutletID(data.OutletID);
+        setTableID(data.TableID);
+        setWaiterID(data.WaiterID);
+        setOutletName(data.OutletName);
+        setMenuName(data.MenuName);
+        setLanguage("Thai");
+        setPage(1);
+        // console.log(data.items);
+        
+        }else{
+          setPage(4);
+        }
+      });
+    }
   }, []);
+
+ 
+
 
   useEffect(() => {
     if (data && data.length > 0) {
@@ -196,7 +212,7 @@ export default function Index({ params }: Props) {
         if (element) {
           const pos = element.getBoundingClientRect();
           if (pos.top <= 50 && pos.bottom >= 50) {
-            console.log(MenuCode)            
+            // console.log(MenuCode)            
             const nav = document.querySelector("nav");
             const activeBtn = document.querySelector(".active");
             setActiveSection(MenuCode);
@@ -240,7 +256,6 @@ export default function Index({ params }: Props) {
       clearTimeout(debounceTimer);
     };
   }, [uniqueGrpSubs, activeSection]);
-  
 
   const handleItemClick = (item: any) => {
     setSelectedItem(item);
@@ -251,10 +266,13 @@ export default function Index({ params }: Props) {
     setError(error);
     setOverlay8(true);
   }
+
   function calculateTotal(order :any) {
     let total = 0;
     for (const item of order) {
-      total += item.GrossPrice;
+      if(order.Void != 'V'){
+        total += item.GrossPrice;
+      }
     }
     return total;
   } 
@@ -285,8 +303,6 @@ export default function Index({ params }: Props) {
         }
 
         let newItem = {
-          OutletID: OutleID,
-          TableID: TableID,
           ItemID: item.ItemID,
           ItemCode: item.ItemCode,
           NameThai : item.NameThai,
@@ -299,7 +315,6 @@ export default function Index({ params }: Props) {
           GrpMaster: item.GrpMaster,
           GrpSub: item.GrpSub,
           Quantity: countItem,
-          WaiterID: WaiterID,
         };
         return [...prevCart, newItem];
       }
@@ -338,15 +353,13 @@ export default function Index({ params }: Props) {
       }
     }
   };
-
-
   
   const Menu = () => {
     return (
       <>
         <div className="tbid">
           <div className="tbid1">
-          <div className="tableid2">
+          <div className="tableid244">
             <p>
               {language == "Thai"
                 ? "สาขา : " + OutletName.Thai
@@ -361,10 +374,10 @@ export default function Index({ params }: Props) {
           <div className="prmstd">
             <p>
               {language == "Thai"
-                ? pkg == "prm" 
+                ? pkg == "P" 
                   ? "พรีเมี่ยม"
                   : "สแตนดาด"
-                : pkg == "prm"
+                : pkg == "P"
                   ? "Premium"
                   : "Standard"
                 }
@@ -432,7 +445,7 @@ export default function Index({ params }: Props) {
                 />
                 <div className="text_price2">
                   <p>{language == "Thai" ? item.NameThai : item.NameEng}</p>
-                  {/* <p>{item.MenuCode}</p> */}
+                
                   {item.UnitPrice != 0 && item.UnitPrice != "" ? (
                     <p className="text_price">{item.UnitPrice}฿</p>
                   ) : (
@@ -589,12 +602,13 @@ export default function Index({ params }: Props) {
           <div className="dialog-overlay">
             <div className="dialogv2">
               <p>
-                กติกาการทาน <br /> คิดค่าบริการเพิ่ม ขีดละ 40 บาท ต่อ 100 กรัม{" "}
+                กติกาการทาน <br />  
+                คิดค่าบริการเพิ่ม ขีดละ 40 บาท ต่อ 100 กรัม
+                แป้งพิซซ่าชิ้นละ 20 บาท ซูชิชิ้นละ 20 บาท
                 <br />
-                แป้งพิซซ่าชิ้นละ 20 บาท ซูชิชิ้นละ 20 บาท <br />
                 <br />
-                Rules for eating leftovers <br />
-                leftover food will be charged 40 Baht/100 g<br />
+                Rules for eating  <br /> leftovers 
+                food will be charged 40 Baht/100 g
                 and 20 Baht/piece for pizza or sushi.
               </p>
               <div className="dialog-actionsv2">
@@ -772,10 +786,10 @@ export default function Index({ params }: Props) {
                     : "Cancel"}</button>  
                     <button
                       onClick={() => [
-                        postItem(cart).then((data: any) => {
-                          console.log(data.props.data_cart.err);
+                        postItem(cart, OutleID, TableID).then((data: any) => {
+                          // console.log(data.props.data_cart.err);
                           if (data.props.data_cart.err) {
-                            console.log(data.props.data_cart.err);
+                            // console.log(data.props.data_cart.err);
                       
                             handleError(data.props.data_cart.err)
                             setOverlay4(false);
@@ -804,34 +818,41 @@ export default function Index({ params }: Props) {
             )}
             {overlay8 && cart.length && (
               <div className="dialog-overlay">
-                <div className="dialog">
-                  {language == "Thai" 
+            <div className="dialogv2">
+              <p>
+                {language == "Thai" 
                     ?  error.Thai 
                     : error.Eng
                     }
-                  <p className="text-red-500">
-                    {language == "Thai"
-                     ?  error.Thai 
-                     : error.Eng
-                    }
-                  </p>
-                  <br />
-                  <div className="dialog-actions">
-                    <button onClick={() => setOverlay8(false)}>{language == "Thai" 
-                    ? "ยกเลิก"
-                    : "Cancel"}</button>
-                    <button
-                      onClick={() => [
-                        setOverlay8(false),
-                      ]}
-                    >
-                      {language == "Thai" 
-                    ? "ตกลง"
-                    : "Agree"}
-                    </button>
-                  </div>
-                </div>
+              </p>
+              <div className="dialog-actionsv2">
+                <button onClick={() => [setOverlay8(false)]}>ตกลง</button>
               </div>
+            </div>
+          </div>
+              // <div className="dialog-overlay">
+              //   <div className="dialog">
+                  // {language == "Thai" 
+                  //   ?  error.Thai 
+                  //   : error.Eng
+                  //   }
+              //     <br />
+              //     <div className="dialog-actionsv2">
+              //       {/* <button onClick={() => setOverlay8(false)}>{language == "Thai" 
+              //       ? "ยกเลิก"
+              //       : "Cancel"}</button> */}
+              //       <button
+              //         onClick={() => [
+              //           setOverlay8(false),
+              //         ]}
+              //       >
+              //         {language == "Thai" 
+              //       ? "ตกลง"
+              //       : "Agree"}
+              //       </button>
+              //     </div>
+              //   </div>
+              // </div>
             )}
           </div>
         </div>
@@ -857,7 +878,7 @@ export default function Index({ params }: Props) {
                 </>
               ) : (
                 <>
-                  <h1>Cart</h1> <p>Time {new Date().toLocaleTimeString()}</p>
+                  <h1>Ordered</h1> <p>Time {new Date().toLocaleTimeString()}</p>
                 </>
               )}
               
@@ -867,9 +888,13 @@ export default function Index({ params }: Props) {
             </button>
           </div>
         </div>
+        {/* className={activeSection === MenuCode ? "active" : ""}> */}
+
         <div className="main-content2">
           {order.map((item: any, index: any) => (
-            <div className="itemv2" key={index}>
+            <div className= {item.Void == "V" ? "Void":""} key={index}>
+              {item.Void == "V" ? <div className="Voidp">ยกเลิก</div> : ""}
+              <div className="itemv2" >
               <div className="v2">
                 <img
                   src={`https://posimg.s3.ap-southeast-1.amazonaws.com/${item.ItemCode}.jpg`}
@@ -899,6 +924,7 @@ export default function Index({ params }: Props) {
                   )}
                 </div>
               </div>
+            </div>
             </div>
           ))}
         </div>
@@ -988,6 +1014,7 @@ export default function Index({ params }: Props) {
       }
     }
   };
+
   const End = () => {
     return (
     <>
@@ -1036,12 +1063,18 @@ export async function getOrder(TableID: any, OutletID: any, orderID: any) {
     zlib.unzipSync(Buffer.from([120, 156, ...new Uint8Array(resBuffer)]))
   );
   console.log(data_ord);
+
   return data_ord;
 }
 
-export async function postItem(cart: any) {
+export async function postItem(cart: any, OutletID: any, TableID: any) {
   let zlib = require("zlib");
-  let body = zlib.deflateSync(JSON.stringify(cart));
+  let cart_ord = {
+    OutletID: OutletID,
+    TableID: TableID,
+    Order : cart,
+  };
+  let body = zlib.deflateSync(JSON.stringify(cart_ord));
   let res = await fetch("http://54.179.86.5:8765/v1/order_qr", {
     method: "POST",
     headers: {
@@ -1049,7 +1082,6 @@ export async function postItem(cart: any) {
     },
     body: body.slice(2),
   });
-
   let resBuffer = await res.arrayBuffer();
 
   let data_cart = JSON.parse(
@@ -1066,8 +1098,8 @@ export async function getItem(params: any, OutleID: any, TableID: any) {
   // let token = "00fcd737b2bb3f33c260c4b3f11db8bf8c3d1d707766d902e6f7955ad3cd8abb5c1f1f401defd601d704c97182145e920121fc98b8013222870a";
   let zlib = require("zlib");
   let jsn2 = {
-    OutletID: OutleID,
-    TableID: TableID,
+    // OutletID: OutleID,
+    // TableID: TableID,
     token: `${token}`,
   };
   let item_qr = "item_qr";
@@ -1085,6 +1117,7 @@ export async function getItem(params: any, OutleID: any, TableID: any) {
   let data = JSON.parse(
     zlib.unzipSync(Buffer.from([120, 156, ...new Uint8Array(resBuffer)]))
   );
+  
 
   return data;
 }

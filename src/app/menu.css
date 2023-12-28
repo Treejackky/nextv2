@@ -44,25 +44,26 @@ button {
 .tbid{
   display: flex;
   /* เว้นระยะห่าง */
-  height: 12vh;
   position: absolute;
   /* background-color: red; */
   width: 100%;
-  justify-content: space-around;
-  align-items: left;
+  padding-left: 5vw;
+  padding-right: 5vw;
+  justify-content: space-between;
+  /* align-items: left; */
   flex-direction: row;
   top: 2.5vh;
   z-index: 2; 
 }
 
  
-.tableid, .tableid2,.language, .prmstd {
+.tableid, .tableid2, .prmstd {
   /* position: absolute; */
   /* top: 3.5rem; */
   margin-top: 0.5rem;
   background-color: white;
   width: 30vw;
-  height: 5vh;
+  height: 6vh;
   border-radius: 0.3rem;
   text-align: center;
   display: flex;
@@ -70,6 +71,52 @@ button {
   justify-content: center;
   z-index: 1; 
 }
+
+
+
+.tableid244{
+  margin-top: 0.5rem;
+  background-color: white;
+  width: 70vw;
+  height: 6vh;
+  border-radius: 0.3rem;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1; 
+}
+
+.tbid2{
+  margin-top: 0.5rem;
+  width: 20vw;
+  height: 6vh;
+  display: flex;
+  justify-content:right;
+  /* padding-left: 20vw; */
+  /* background-color: #2e9dff; */
+}
+
+.tbid2 .language {
+  background-color: white;
+  width: 6vh;
+  height: 6vh;
+  border-radius: 100%;
+  /* text-align: center; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1; 
+}
+
+.tbid2 .language button{
+  /* width: 30vw;
+  height: 5vh; */
+  text-align: center;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
 /* .tableid2{
   position: absolute;
   top: 0.5rem;
@@ -242,7 +289,7 @@ footer {
   border-radius: 8px;
   display: flex;
   flex-direction: row;
-}
+ }
 
 
 .cart-orderv2 button {
@@ -276,15 +323,25 @@ footer {
 
 }
 
+.sticky footer button {
+  border: none;
+  color: white;
+  width: 50%;
+  text-align: center;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
 .text_price2{
   width: 100%;
   word-wrap: break-word;
+  display: flex;
 
 }
 
 .text_price2 p {
   font-size: 0.8rem;
-  width: 100%;
+  /* width: 100%; */
   /* background-color: #2e9dff; */
   white-space: normal;
   overflow-wrap: break-word;
@@ -292,7 +349,6 @@ footer {
 
 
 .text_price{
-  display: flex;
   flex-direction: row;
   text-align: right;
   justify-content: flex-end;
@@ -312,7 +368,7 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
-}
+ }
 
   .modal {
     position: fixed;
@@ -393,6 +449,7 @@ footer {
   
 
   .dialog-overlay .dialog p {
+    
     font-size:0.9rem;
     overflow: hidden;
     font-weight: bold;
@@ -412,12 +469,12 @@ footer {
 
   .dialog-overlay .dialogv2 p {
     font-size: 1rem;
-    white-space: nowrap;
-    overflow: hidden;
     font-weight: bold;
     justify-content: center;
     align-items: center;
     text-align: center;
+    word-wrap: break-word;
+
   }
 
   .dialog-overlay .dialogv2  button{
